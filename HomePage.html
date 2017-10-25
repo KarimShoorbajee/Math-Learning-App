@@ -41,6 +41,8 @@
 		}
 	}
 	
+	//generates an addition problem
+	
 	function genAddProb()
 	{
 		a = returnRandomInt(1,10);
@@ -48,6 +50,9 @@
 		ans = a + b;
 		genDivs(2*ans);
 		console.log(a + "+" + b + "=" + ans);
+		var problem = document.createElement("P");
+		problem.innerHTML = (a + "+" + b + "=" + ans);
+		document.body.appendChild(problem);
 	}
 	
 	genAddProb();
