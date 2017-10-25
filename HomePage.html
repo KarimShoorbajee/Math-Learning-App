@@ -20,4 +20,15 @@
 	{
 		$(".box").draggable()
 	});
+	
+	function returnRandomInt(lb,ub)
+	{
+		console.log(Math.floor(Math.random()*(ub-lb) + lb));
+		return Math.floor(Math.random());
+	}
+	
+	returnRandomInt(31,3);
+	
+	var d = document.createDocumentFragment();
+	var elements = document.getElementById("div")
 </script>
