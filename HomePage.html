@@ -8,10 +8,10 @@
 		<script src="jquery-ui.min.js"></script>
 	</head>
 	<body>
-		<div class="box">blah</div>
-		<div class="box">blah</div>
-		<div class="box">blah</div>
-		<div class="box">blah</div>
+		<div class="box"><p class = "hi" ></p></div>
+		<div class="box"><p class = "hi" ></p></div>
+		<div class="box"><p class = "hi" ></p></div>
+		<div class="box"><p class = "hi" ></p></div>
 	</body>
 </html>
 
@@ -27,6 +27,9 @@
 		return Math.floor(Math.random());
 	}
 	
+	var writeHi = document.getElementsByClassName("hi");
+	writeHi[0].innerHTML = "hiiiiii";
+	writeHi[1].innerHTML = "hiiiiii";
 	returnRandomInt(31,3);
 	
 	var d = document.createDocumentFragment();
