@@ -1,11 +1,12 @@
 .box
 {
 	background-color: tomato;
-	width: 100px;
-	height: 100px;
+	width: 25px;
+	height: 25px;
 	display: inline-block;
 	margin: 10px;
 	vertical-align: top;
+	border-style: solid;
 }
 
 .hi

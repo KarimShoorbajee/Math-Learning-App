@@ -16,25 +16,49 @@
 </html>
 
 <script language="javascript" type="text/javascript">
+	//makes boxes draggable
+	
 	$(document).ready(function()
 	{
 		$(".box").draggable()
 	});
 	
+	//generates a random int between passed in upper and lower bounds
+	
 	function returnRandomInt(lb,ub)
 	{
 		console.log(Math.floor(Math.random()*(ub-lb) + lb));
-		return Math.floor(Math.random());
+		return Math.floor(Math.random()*(ub-lb) + lb);	
+	
 	}
 	
 	returnRandomInt(31,3);
 	
+	function genRandDivs() 
+	{
+		var i;
+		var count = returnRandomInt(15,2)
+		for (i = 0 ; i < count; i++)
+		{
+			var randBox = document.createElement("div");
+			randBox.setAttribute("class", "box");
+			document.body.appendChild(randBox);
+		}
+	}
+	
+	genRandDivs();
+	
+	//Practicing changing elements using DOM
+	/*
 	var writeHi = document.getElementsByClassName("hi");
 	writeHi[0].style.color = "blue";
 	writeHi[0].innerHTML = "hiiiiii";
 	writeHi[1].innerHTML = "hiiiiii";
+	*/
 	
-	function moveMan()
+	
+	//Practicing animating using DOM
+	/* function moveMan()
 	{
 		var elem = document.getElementsByClassName("box");
 		var pos = 0;
@@ -53,5 +77,5 @@
 			}
 		}
 	}
-	moveMan();
+	moveMan(); */
 </script>
