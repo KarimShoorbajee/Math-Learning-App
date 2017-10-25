@@ -2,9 +2,10 @@
 <html>
 	<head>
 		<title></title>
-		<script link src="jquery-3.2.1.min" type="text/javascript"></script>
-		<script link src="jquery-ui" type="text/javascript"></script>
+		<script link src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="jquery-ui.min.css">
 		<link rel = "stylesheet" type" type="text/css" href = "style.css">
+		<script src="jquery-ui.min.js"></script>
 	</head>
 	<body>
 		<div class="box">blah</div>
@@ -13,3 +14,10 @@
 		<div class="box">blah</div>
 	</body>
 </html>
+
+<script language="javascript" type="text/javascript">
+	$(document).ready(function()
+	{
+		$(".box").draggable()
+	});
+</script>
