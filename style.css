@@ -5,9 +5,9 @@
 	height: 100px;
 	display: inline-block;
 	margin: 10px;
+	vertical-align: top;
 }
 
 .hi
 {
-	padding: 12px;
 }

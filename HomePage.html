@@ -27,11 +27,31 @@
 		return Math.floor(Math.random());
 	}
 	
-	var writeHi = document.getElementsByClassName("hi");
-	writeHi[0].innerHTML = "hiiiiii";
-	writeHi[1].innerHTML = "hiiiiii";
 	returnRandomInt(31,3);
 	
-	var d = document.createDocumentFragment();
-	var elements = document.getElementById("div")
+	var writeHi = document.getElementsByClassName("hi");
+	writeHi[0].style.color = "blue";
+	writeHi[0].innerHTML = "hiiiiii";
+	writeHi[1].innerHTML = "hiiiiii";
+	
+	function moveMan()
+	{
+		var elem = document.getElementsByClassName("box");
+		var pos = 0;
+		var run = setInterval(move, 5);
+		function move() 
+		{
+			if (pos == 100)
+			{
+				clearInterval(run);
+			}
+			else 
+			{
+				pos++
+				elem[0].style.top = pos + 'px';
+				elem[0].style.left = pos + 'px';
+			}
+		}
+	}
+	moveMan();
 </script>
