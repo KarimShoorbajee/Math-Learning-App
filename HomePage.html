@@ -8,10 +8,6 @@
 		<script src="jquery-ui.min.js"></script>
 	</head>
 	<body>
-		<div class="box"><p class = "hi" ></p></div>
-		<div class="box"><p class = "hi" ></p></div>
-		<div class="box"><p class = "hi" ></p></div>
-		<div class="box"><p class = "hi" ></p></div>
 	</body>
 </html>
 
@@ -32,12 +28,11 @@
 	
 	}
 	
-	returnRandomInt(31,3);
+	//generates random number of divs onto the screen
 	
-	function genRandDivs() 
+	function genDivs(count) 
 	{
 		var i;
-		var count = returnRandomInt(15,2)
 		for (i = 0 ; i < count; i++)
 		{
 			var randBox = document.createElement("div");
@@ -46,7 +41,16 @@
 		}
 	}
 	
-	genRandDivs();
+	function genAddProb()
+	{
+		a = returnRandomInt(1,10);
+		b = returnRandomInt(1,10);
+		ans = a + b;
+		genDivs(2*ans);
+		console.log(a + "+" + b + "=" + ans);
+	}
+	
+	genAddProb();
 	
 	//Practicing changing elements using DOM
 	/*
