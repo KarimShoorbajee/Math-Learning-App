@@ -6,19 +6,16 @@
 		<link rel="stylesheet" href="jquery-ui.min.css">
 		<link rel = "stylesheet" type" type="text/css" href = "style.css">
 		<script src="jquery-ui.min.js"></script>
+		<div id = "boxtop"></div>
+		<div id = "eqbox"></div>
+		<div id = "box1" class = "dragInto"></div>
+		<div id = "box2" class = "dragInto"></div>
 	</head>
 	<body>
 	</body>
 </html>
 
 <script language="javascript" type="text/javascript">
-	//makes boxes draggable
-	
-	$(document).ready(function()
-	{
-		$(".box").draggable()
-	});
-	
 	//generates a random int between passed in upper and lower bounds
 	
 	function returnRandomInt(lb,ub)
@@ -37,7 +34,7 @@
 		{
 			var randBox = document.createElement("div");
 			randBox.setAttribute("class", "box");
-			document.body.appendChild(randBox);
+			document.getElementById("boxtop").appendChild(randBox);
 		}
 	}
 	
@@ -51,11 +48,44 @@
 		genDivs(2*ans);
 		console.log(a + "+" + b + "=" + ans);
 		var problem = document.createElement("P");
+		problem.setAttribute("id","eq");
 		problem.innerHTML = (a + "+" + b + "=" + ans);
-		document.body.appendChild(problem);
+		document.getElementById("eqbox").appendChild(problem);
 	}
 	
+	
+	
 	genAddProb();
+	
+	
+	//fades in the draggable boxes just because
+	$(document).ready(function()
+	{
+		$(".box").hide();
+	});
+	
+	$(document).ready(function()
+	{
+		$(".box").fadeIn();
+	});
+	/* makes boxes draggable 
+	$(document).ready(function()
+	{
+		$(".box").draggable
+		({
+			grid: [20,20]
+		});
+	});
+	*/
+	
+	$(document).ready(function()
+	{
+		$("#boxtop").sortable
+		({
+			connectWith: ".dragInto"			
+		});
+		
+	});
 	
 	//Practicing changing elements using DOM
 	/*
