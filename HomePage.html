@@ -62,13 +62,11 @@
 	$(document).ready(function()
 	{
 		$(".box").hide();
-	});
-	
-	$(document).ready(function()
-	{
 		$(".box").fadeIn();
 	});
-	/* makes boxes draggable 
+	
+	/*
+	makes boxes draggable 
 	$(document).ready(function()
 	{
 		$(".box").draggable
@@ -85,7 +83,22 @@
 			connectWith: ".dragInto"			
 		});
 		
+		$(".dragInto").sortable
+		({
+			connectWith: ".dragInto"			
+		});
+		
 	});
+	
+	$(document).ready(function()
+	{
+		$("dragInto").droppable
+		({
+			accept: ".box"
+		});
+	});
+	
+	
 	
 	//Practicing changing elements using DOM
 	/*
