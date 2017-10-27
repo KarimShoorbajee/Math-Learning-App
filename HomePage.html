@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+	<body>
 	<head>
 		<title></title>
 		<script link src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -7,12 +8,12 @@
 		<link rel = "stylesheet" type" type="text/css" href = "style.css">
 		<script src="jquery-ui.min.js"></script>
 		<div id = "boxtop" class = "dragInto"></div>
+		<button type="button" id="button">My Children!!!</button>
 		<div id = "eqbox"></div>
-		<div id = "box1" class = "dragInto"></div>
-		<div id = "box2" class = "dragInto"></div>
-		<div id = "box3" class = "dragInto"></div>
+		<div id = "box1" class = "ansBox"></div>
+		<div id = "box2" class = "ansBox"></div>
+		<div id = "box3" class = "ansBox"></div>
 	</head>
-	<body>
 	</body>
 </html>
 
@@ -83,12 +84,12 @@
 	{
 		$("#boxtop").sortable
 		({
-			connectWith: ".dragInto"			
+			connectWith: ".ansBox"			
 		});
 		
-		$(".dragInto").sortable
+		$(".ansBox").sortable
 		({
-			connectWith: ".dragInto"			
+			connectWith: ".ansBox"			
 		});
 		
 	});
@@ -101,6 +102,14 @@
 		});
 	});
 	
+	var numChild = $("#boxtop *").length;
+	$(document).ready(function()
+	{
+		$("#button").click(function() 	
+		{
+			console.log($("#boxtop *").length);
+		});
+	});
 	
 	
 	//Practicing changing elements using DOM

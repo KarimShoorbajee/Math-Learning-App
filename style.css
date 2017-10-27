@@ -17,29 +17,14 @@
 	border-style: solid;
 }
 
-#box1
+.ansBox
 {
 	display: inline-block;
 	width: 25%;
 	height: 100px; 
 	border-style: solid;
-	margin: 10px;
-}
-#box2
-{
-	display: inline-block;
-	width: 25%;
-	height: 100px; 
-	border-style: solid;
-	margin: 10px;
-}
-#box3
-{
-	display: inline-block;
-	width: 25%;
-	height: 100px; 
-	border-style: solid;
-	margin: 10px;
+	margin: 3.5%;
+	vertical-align: top;
 }
 #eqbox
 {
