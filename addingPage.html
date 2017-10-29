@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html>
+	<body>
+	<head>
+		<title></title>
+		<script link src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="jquery-ui.min.css">
+		<link rel = "stylesheet" type" type="text/css" href = "style.css">
+		<script src="jquery-ui.min.js"></script>
+		<div id = "boxtop" class = "dragInto"></div>
+		<div id = "eqbox"></div>
+		<div id = "dragInBoxWrapper">
+			<div id = "box1" class = "ansBox"></div>
+			<p class = "opperator"> + </p>
+			<div id = "box2" class = "ansBox"></div>
+			<p class = "opperator"> = </p>
+			<div id = "box3" class = "ansBox"></div>
+		</div>
+		<button type="button" id="button">Check Anwer</button>
+	</head>
+	</body>
+</html>
+
+<script language="javascript" type="text/javascript">
+	/*
+	* TO - DO
+	* document everything
+	* add generate new problem button
+	* give visual cue to check if right or wrong
+	* all of fraction problem stuff
+	*/
+	
+	//generates a random int between passed in upper and lower bounds
+	
+	function returnRandomInt(lb,ub)
+	{
+		return Math.floor(Math.random()*(ub-lb) + lb);	
+	
+	}
+	
+	//generates random number of divs onto the screen
+	
+	function genDivs(count) 
+	{
+		var i;
+		for (i = 0 ; i < count; i++)
+		{
+			var randBox = document.createElement("div");
+			randBox.setAttribute("class", "box");
+			document.getElementById("boxtop").appendChild(randBox);
+		}
+	}
+	
+	//generates an addition problem
+	
+	function GenAddProb()
+	{
+		this.firstNum = returnRandomInt(1,10);
+		this.secondNum =  returnRandomInt(1,10);
+		this.ans = this.firstNum+this.secondNum;
+		this.text = this.firstNum + " + " + this.secondNum
+	}
+	
+	var prob1 = new GenAddProb();
+	//console.log(prob1.firstNum + " + " + prob1.secondNum + " = " + prob1.ans);
+	genDivs(prob1.ans*2);
+	document.getElementById("eqbox").innerHTML = prob1.text;
+	
+	
+	//fades in the draggable boxes just because
+	$(document).ready(function()
+	{
+		$(".box").hide();
+		$(".box").fadeIn();
+	
+	
+		$("#boxtop").sortable
+		({
+			connectWith: ".ansBox"			
+		});
+		
+		$(".ansBox").sortable
+		({
+			connectWith: ".ansBox"			
+		});
+		
+		$("dragInto").droppable
+		({
+			accept: ".box"
+		});
+		$("#button").click(function() 	
+		{
+			if ($("#box1 *").length+  $("#box2 *").length  == $("#box3 *").length)
+			{
+				console.log("correct");
+			}
+			else console.log("incorrect");
+		});
+		
+		
+	});
+	
+	/*
+	makes boxes draggable 
+	$(document).ready(function()
+	{
+		$(".box").draggable
+		({
+			grid: [20,20]
+		});
+	});
+	*/
+	
+	//this lets me drag one of the boxes from the top boxes into the answer boxes
+	
+	
+	//Practicing changing elements using DOM
+	/*
+	var writeHi = document.getElementsByClassName("hi");
+	writeHi[0].style.color = "blue";
+	writeHi[0].innerHTML = "hiiiiii";
+	writeHi[1].innerHTML = "hiiiiii";
+	*/
+	
+	
+	//Practicing animating using DOM
+	/* function moveMan()
+	{
+		var elem = document.getElementsByClassName("box");
+		var pos = 0;
+		var run = setInterval(move, 5);
+		function move() 
+		{
+			if (pos == 100)
+			{
+				clearInterval(run);
+			}
+			else 
+			{
+				pos++
+				elem[0].style.top = pos + 'px';
+				elem[0].style.left = pos + 'px';
+			}
+		}
+	}
+	moveMan(); */
+</script>
