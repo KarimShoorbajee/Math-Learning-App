@@ -21,9 +21,9 @@
 {
 	display: inline-block;
 	width: 25%;
-	height: 100px; 
+	height: 300px; 
 	border-style: solid;
-	margin: 3.5%;
+	margin: auto;
 	vertical-align: top;
 }
 #eqbox
@@ -40,3 +40,28 @@
 	color: red;
 	margin: auto;
 }
+.opperator
+{
+	display: inline-block;
+	vertical-align:top;
+	font-size: 30px;
+	margin-right: 30px;
+	margin-left: 30px;
+}
+#dragInBoxWrapper
+{
+	display: block;
+	width: 80%;
+	margin: auto;
+	padding: auto;
+	margin-top: 20px;
+	justify-content:center;
+}
+#button
+{
+	margin-top: 30px;
+	margin-left: 45%;
+	margin-right: 45%;
+	width: 10%;
+}
+

@@ -8,11 +8,15 @@
 		<link rel = "stylesheet" type" type="text/css" href = "style.css">
 		<script src="jquery-ui.min.js"></script>
 		<div id = "boxtop" class = "dragInto"></div>
-		<button type="button" id="button">My Children!!!</button>
 		<div id = "eqbox"></div>
-		<div id = "box1" class = "ansBox"></div>
-		<div id = "box2" class = "ansBox"></div>
-		<div id = "box3" class = "ansBox"></div>
+		<div id = "dragInBoxWrapper">
+			<div id = "box1" class = "ansBox"></div>
+			<p class = "opperator"> + </p>
+			<div id = "box2" class = "ansBox"></div>
+			<p class = "opperator"> = </p>
+			<div id = "box3" class = "ansBox"></div>
+		</div>
+		<button type="button" id="button">Check Anwer</button>
 	</head>
 	</body>
 </html>
@@ -22,7 +26,6 @@
 	
 	function returnRandomInt(lb,ub)
 	{
-		console.log(Math.floor(Math.random()*(ub-lb) + lb));
 		return Math.floor(Math.random()*(ub-lb) + lb);	
 	
 	}
@@ -42,22 +45,18 @@
 	
 	//generates an addition problem
 	
-	function genAddProb()
+	function GenAddProb()
 	{
-		a = returnRandomInt(1,10);
-		b = returnRandomInt(1,10);
-		ans = a + b;
-		genDivs(2*ans);
-		console.log(a + "+" + b + "=" + ans);
-		var problem = document.createElement("P");
-		problem.setAttribute("id","eq");
-		problem.innerHTML = (a + "+" + b + "=" + ans);
-		document.getElementById("eqbox").appendChild(problem);
+		this.firstNum = returnRandomInt(1,10);
+		this.secondNum =  returnRandomInt(1,10);
+		this.ans = this.firstNum+this.secondNum;
+		this.text = this.firstNum + " + " + this.secondNum
 	}
 	
-	
-	
-	genAddProb();
+	var prob1 = new GenAddProb();
+	//console.log(prob1.firstNum + " + " + prob1.secondNum + " = " + prob1.ans);
+	genDivs(prob1.ans*2);
+	document.getElementById("eqbox").innerHTML = prob1.text;
 	
 	
 	//fades in the draggable boxes just because
@@ -65,6 +64,32 @@
 	{
 		$(".box").hide();
 		$(".box").fadeIn();
+	
+	
+		$("#boxtop").sortable
+		({
+			connectWith: ".ansBox"			
+		});
+		
+		$(".ansBox").sortable
+		({
+			connectWith: ".ansBox"			
+		});
+		
+		$("dragInto").droppable
+		({
+			accept: ".box"
+		});
+		$("#button").click(function() 	
+		{
+			if ($("#box1 *").length+  $("#box2 *").length  == $("#box3 *").length)
+			{
+				console.log("correct");
+			}
+			else console.log("incorrect");
+		});
+		
+		
 	});
 	
 	/*
@@ -79,37 +104,6 @@
 	*/
 	
 	//this lets me drag one of the boxes from the top boxes into the answer boxes
-	
-	$(document).ready(function()
-	{
-		$("#boxtop").sortable
-		({
-			connectWith: ".ansBox"			
-		});
-		
-		$(".ansBox").sortable
-		({
-			connectWith: ".ansBox"			
-		});
-		
-	});
-	
-	$(document).ready(function()
-	{
-		$("dragInto").droppable
-		({
-			accept: ".box"
-		});
-	});
-	
-	var numChild = $("#boxtop *").length;
-	$(document).ready(function()
-	{
-		$("#button").click(function() 	
-		{
-			console.log($("#boxtop *").length);
-		});
-	});
 	
 	
 	//Practicing changing elements using DOM
