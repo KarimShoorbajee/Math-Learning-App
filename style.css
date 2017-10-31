@@ -70,3 +70,15 @@
 	border-left-style: solid;
 	height: 100px;
 }
+.row
+{
+	width: 100%;
+}
+#fracBox
+{
+	display:inline-block;
+	border-style:solid;
+	width: 30px;
+	height: 20px;
+	
+}
