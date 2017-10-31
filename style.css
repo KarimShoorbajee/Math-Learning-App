@@ -64,4 +64,9 @@
 	margin-right: 45%;
 	width: 10%;
 }
-
+.column
+{
+	border-right-style: solid;
+	border-left-style: solid;
+	height: 100px;
+}
