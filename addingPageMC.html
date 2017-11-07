@@ -9,7 +9,7 @@
 		<link rel = "stylesheet" type" type="text/css" href = "style.css">
 		<script src="jquery-ui.min.js"></script>
 		<div id = "eqbox"></div>
-		<div id = "dragInBoxWrapper">
+		<div class = "dragInBoxWrapper">
 			<div id = "box1" class = "ansBox"></div>
 			<p class = "opperator"> + </p>
 			<div id = "box2" class = "ansBox"></div>
@@ -17,11 +17,11 @@
 			<div id = "box3" class = "ansBox"></div>
 		</div>
 		<p>What change should be made to properly represent the mathematical expression?</p>
-		<div id = "dragInBoxWrapper">
-			<div class = "choice"></div>
-			<div class = "choice"></div>
-			<div class = "choice"></div>
-			<div class = "choice"></div>
+		<div class = "dragInBoxWrapper">
+			<div class = "choice" id = "choice1"></div>
+			<div class = "choice" id = "choice2"></div>
+			<div class = "choice" id = "choice3"></div>
+			<div class = "choice" id = "choice4"></div>
 		</div>
 		<div id="feedback"><p></p></div>
 	</head>
@@ -44,14 +44,24 @@
 		this.firstNum = returnRandomInt(1,10);
 		this.secondNum =  returnRandomInt(1,10);
 		this.ans = this.firstNum+this.secondNum;
-		this.text = this.firstNum + " + " + this.secondNum
+		this.text = this.firstNum + " + " + this.secondNum;
 	}
 	
 	function messedUpProblemData()
 	{
 		this.changeByNum = returnRandomInt(1,4);
 		this.changeBySign = returnRandomInt(1,3);
-		this.changeByBox = returnRandomInt(1,3);
+		this.changeByBox = returnRandomInt(1,4);
+		if (this.changeByBox == 1)
+			this.cbbText = "box 1";
+		if (this.changeByBox == 2)
+			this.cbbText = "box 2";
+		if (this.changeByBox == 3)
+			this.cbbText = "box 3";
+		if (this.changeBySign == 1)
+			this.cbsText = "removed from";
+		if (this.changeBySign == 2)
+			this.cbsText = "added to";
 	}
 	
 	//generates an addition problem
@@ -125,6 +135,7 @@
 		}
 	}
 	
+	
 	var prob1 = new GenAddProb();
 	var prob1MessedUp = new messedUpProblemData();
 	genDivs(prob1.firstNum, "box1");
@@ -132,26 +143,73 @@
 	genDivs(prob1.ans, "box3");
 	document.getElementById("eqbox").innerHTML = prob1.text;
 	messUpProblem(prob1,prob1MessedUp);
+	var ac2 = new messedUpProblemData();
+	var ac3 = new messedUpProblemData();
+	var ac4 = new messedUpProblemData();
+	if (ac2.changeByNum == prob1MessedUp.changeByNum && ac2.changeBySign == prob1MessedUp.changeBySign)
+	{
+		if (ac2.changeBySign == 1)
+			ac2.changeBySign = 2;
+		else ac2.changeBySign = 1;
+	}
+	if (ac3.changeByNum == prob1MessedUp.changeByNum && ac3.changeBySign == prob1MessedUp.changeBySign)
+	{
+		if (ac3.changeBySign == 1)
+			ac3.changeBySign = 2;
+		else ac3.changeBySign = 1;
+	}
+	if (ac4.changeByNum == prob1MessedUp.changeByNum && ac4.changeBySign == prob1MessedUp.changeBySign)
+	{
+		if (ac4.changeBySign == 1)
+			ac4.changeBySign = 2;
+		else ac4.changeBySign = 1;
+	}
+	var nums = [1,2,3,4],
+	ranNums = [],
+	i = nums.length;
+	console.log(i);
+	j = 0;
+
+	while (i--) 
+	{
+		j = Math.floor(Math.random() * (i+1));
+		ranNums.push(nums[j]);
+		nums.splice(j,1);
+	}
+	var boxAssignment1 = ranNums[0];
+	var boxAssignment2 = ranNums[1];
+	var boxAssignment3 = ranNums[2];
+	var boxAssignment4 = ranNums[3];
+	document.getElementById("choice" + boxAssignment1).innerHTML = prob1MessedUp.changeByNum + " boxes should be " + prob1MessedUp.cbsText +" "+ prob1MessedUp.cbbText;
+	document.getElementById("choice" + boxAssignment2).innerHTML = ac2.changeByNum + " boxes should be " + ac2.cbsText +" "+ ac2.cbbText;
+	document.getElementById("choice" + boxAssignment3).innerHTML = ac3.changeByNum + " boxes should be " + ac3.cbsText +" "+ ac3.cbbText;
+	document.getElementById("choice" + boxAssignment4).innerHTML = ac4.changeByNum + " boxes should be " + ac4.cbsText +" "+ ac4.cbbText;
 	
 	
 	
 	//fades in the draggable boxes just because
 	$(document).ready(function()
 	{
-		$("#button").click(function() 	
+		$("#choice" + boxAssignment1).click(function() 	
 		{
-			if (prob1.firstNum == $("#box1 *").length && prob1.secondNum == $("#box2 *").length && prob1.ans == $("#box2 *").length + $("#box1 *").length)
-			{
-				document.getElementById("feedback").innerHTML = "correct";
-				$("#feedback").css("color", "green");
-			}
-			else
-			{
-				document.getElementById("feedback").innerHTML = "incorrect";
-				$("#feedback").css("color", "red");
-			}
-			
-		});		
+			document.getElementById("feedback").innerHTML = "correct";
+			$("#feedback").css("color", "green");
+		})	
+		$("#choice" + boxAssignment2).click(function() 	
+		{
+			document.getElementById("feedback").innerHTML = "incorrect";
+			$("#feedback").css("color", "red");
+		})	
+		$("#choice" + boxAssignment3).click(function() 	
+		{
+			document.getElementById("feedback").innerHTML = "incorrect";
+			$("#feedback").css("color", "red");
+		})	
+		$("#choice" + boxAssignment4).click(function() 	
+		{
+			document.getElementById("feedback").innerHTML = "incorrect";
+			$("#feedback").css("color", "red");
+		})	
 	});
 	
 	/*

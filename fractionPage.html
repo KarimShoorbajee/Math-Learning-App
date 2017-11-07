@@ -18,8 +18,10 @@
 			</tr>
 		</table>
 		<button type="button" id="colorIn">fill in divs</button>
-		<button type="button" id="colorOut">empty divs</button>
-		<button type="button" id="destBox">delete box</button>
+		<button type="button" id="colorOut">empty</button>
+		<button type="button" id="destBox">clear</button>
+		<button type="button" id="check">check</button>
+		<div id="feedback"><p></p></div>
 	</head>
 	</body>
 </html>
@@ -52,12 +54,28 @@ $(document).ready(function()
 	});
 	$("#destBox").click(function()
 	{
-		var apparentColumns = document.getElementsByClassName("column");
-		document.getElementById("row").removeChild(row[clickCounter]);
-		clickCounter -=1;
+		$(".column").remove();
+		var column = document.createElement("TD")
+		column.className = "column";
+		document.getElementById("row").appendChild(column);	
+		clickCounter =0;
+	});
+	$("#check").click(function()
+	{
+	if (clickCounter == numer && $("#row *").length == denom)
+	{
+		document.getElementById("feedback").innerHTML = "correct";
+		$("#feedback").css("color", "green");
+	}
+		else
+		{
+		document.getElementById("feedback").innerHTML = "incorrect";
+			
+		
 	});
 	var denom = returnRandomInt(1,10);
-	document.getElementById("fracBox").innerHTML = denom - returnRandomInt(1,denom-1) + " / " + denom;
+	var numer = denom - returnRandomInt(1,denom-1);
+	document.getElementById("fracBox").innerHTML = numer + " / " + denom;
 	
 });
 
