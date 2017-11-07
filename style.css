@@ -26,6 +26,15 @@
 	margin: auto;
 	vertical-align: top;
 }
+.choice
+{
+	display: inline-block;
+	width: 20%;
+	height: 100px; 
+	border-style: solid;
+	margin: auto;
+	vertical-align: top;
+}
 #eqbox
 {
 	border-style: solid;

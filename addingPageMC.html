@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+	<body>
+	<head>
+		<title></title>
+		<script link src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="jquery-ui.min.css">
+		<link rel = "stylesheet" type" type="text/css" href = "style.css">
+		<script src="jquery-ui.min.js"></script>
+		<div id = "eqbox"></div>
+		<div id = "dragInBoxWrapper">
+			<div id = "box1" class = "ansBox"></div>
+			<p class = "opperator"> + </p>
+			<div id = "box2" class = "ansBox"></div>
+			<p class = "opperator"> = </p>
+			<div id = "box3" class = "ansBox"></div>
+		</div>
+		<p>What change should be made to properly represent the mathematical expression?</p>
+		<div id = "dragInBoxWrapper">
+			<div class = "choice"></div>
+			<div class = "choice"></div>
+			<div class = "choice"></div>
+			<div class = "choice"></div>
+		</div>
+		<div id="feedback"><p></p></div>
+	</head>
+	</body>
+</html>
+
+<script language="javascript" type="text/javascript">
+
+	//generates a random int between passed in upper and lower bounds
+	
+	function returnRandomInt(lb,ub)
+	{
+		return Math.floor(Math.random()*(ub-lb) + lb);	
+	}
+	
+	//generates random number of divs onto the screen
+	
+	function GenAddProb()
+	{
+		this.firstNum = returnRandomInt(1,10);
+		this.secondNum =  returnRandomInt(1,10);
+		this.ans = this.firstNum+this.secondNum;
+		this.text = this.firstNum + " + " + this.secondNum
+	}
+	
+	function messedUpProblemData()
+	{
+		this.changeByNum = returnRandomInt(1,4);
+		this.changeBySign = returnRandomInt(1,3);
+		this.changeByBox = returnRandomInt(1,3);
+	}
+	
+	//generates an addition problem
+	
+	function genDivs(count, boxName) 
+	{	
+		for (var i = 0 ; i < count; i++)
+		{
+			var randBox = document.createElement("div");
+			randBox.setAttribute("class", "box");
+			document.getElementById(boxName).appendChild(randBox);
+		}
+	}
+
+	function messUpProblem(problem, messedUpProblem)
+	{
+		if (messedUpProblem.changeBySign == 1)
+		{
+			if (messedUpProblem.changeByBox == 1)
+			{
+				genDivs(messedUpProblem.changeByNum,"box1");
+			}
+			else if (messedUpProblem.changeByBox == 2)
+			{
+				genDivs(messedUpProblem.changeByNum,"box2");
+			}
+			else 
+			{
+				genDivs(messedUpProblem.changeByNum,"box3");
+			}
+		}
+		else if (messedUpProblem.changeBySign == 2)
+		{
+			if (messedUpProblem.changeByBox == 1)
+			{
+				if (messedUpProblem.changeByNum > problem.firstNum)
+				{
+					messedUpProblem.changeByNum = problem.firstNum;
+					console.log(messedUpProblem.changeByNum);
+				}
+				for (var i = 0 ; i < messedUpProblem.changeByNum; i++)
+				{	
+					document.getElementById("box1").removeChild(document.getElementById("box1").childNodes[0]);
+				}
+			}
+			else if (messedUpProblem.changeByBox == 2)
+			{
+				if (messedUpProblem.changeByNum > problem.secondNum)
+				{
+					messedUpProblem.changeByNum = problem.secondNum;
+					console.log(messedUpProblem.changeByNum);
+				}
+				for (var i = 0 ; i < messedUpProblem.changeByNum; i++)
+				{	
+					document.getElementById("box2").removeChild(document.getElementById("box2").childNodes[0]);
+				}
+			}
+			else 
+			{
+				if (messedUpProblem.changeByNum > problem.ans)
+				{
+					messedUpProblem.changeByNum = problem.ans;
+					console.log(messedUpProblem.changeByNum);
+				}
+				for (var i = 0 ; i < messedUpProblem.changeByNum; i++)
+				{	
+					document.getElementById("box3").removeChild(document.getElementById("box3").childNodes[0]);
+				}
+			}
+			console.log("ay");
+		}
+	}
+	
+	var prob1 = new GenAddProb();
+	var prob1MessedUp = new messedUpProblemData();
+	genDivs(prob1.firstNum, "box1");
+	genDivs(prob1.secondNum, "box2");
+	genDivs(prob1.ans, "box3");
+	document.getElementById("eqbox").innerHTML = prob1.text;
+	messUpProblem(prob1,prob1MessedUp);
+	
+	
+	
+	//fades in the draggable boxes just because
+	$(document).ready(function()
+	{
+		$("#button").click(function() 	
+		{
+			if (prob1.firstNum == $("#box1 *").length && prob1.secondNum == $("#box2 *").length && prob1.ans == $("#box2 *").length + $("#box1 *").length)
+			{
+				document.getElementById("feedback").innerHTML = "correct";
+				$("#feedback").css("color", "green");
+			}
+			else
+			{
+				document.getElementById("feedback").innerHTML = "incorrect";
+				$("#feedback").css("color", "red");
+			}
+			
+		});		
+	});
+	
+	/*
+	makes boxes draggable 
+	$(document).ready(function()
+	{
+		$(".box").draggable
+		({
+			grid: [20,20]
+		});
+	});
+	*/
+	
+	//this lets me drag one of the boxes from the top boxes into the answer boxes
+	
+	
+	//Practicing changing elements using DOM
+	/*
+	var writeHi = document.getElementsByClassName("hi");
+	writeHi[0].style.color = "blue";
+	writeHi[0].innerHTML = "hiiiiii";
+	writeHi[1].innerHTML = "hiiiiii";
+	*/
+	
+	
+	//Practicing animating using DOM
+	/* function moveMan()
+	{
+		var elem = document.getElementsByClassName("box");
+		var pos = 0;
+		var run = setInterval(move, 5);
+		function move() 
+		{
+			if (pos == 100)
+			{
+				clearInterval(run);
+			}
+			else 
+			{
+				pos++
+				elem[0].style.top = pos + 'px';
+				elem[0].style.left = pos + 'px';
+			}
+		}
+	}
+	moveMan(); */
+</script>
